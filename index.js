@@ -32,6 +32,10 @@ export default function solution(content) {
   });
   // #1 ---
   console.log(`Count: ${data.length}`);
-
+  // #2 ---
+  const cities = data.map((row) => row.get(city));
+  const unicCities = Array.from(new Set(cities)).sort();
+  console.log(`Cities: ${unicCities.join(", ")}`);
+  // #3 --
   // END
 }
