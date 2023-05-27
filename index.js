@@ -37,12 +37,12 @@ export default function solution(content) {
   const cities = data.map((row) => row.get(city));
   const unicCities = Array.from(new Set(cities)).sort();
   console.log(`Cities: ${unicCities.join(", ")}`);
-  // #3 --
+  // #3 ---
   const humidityDataSorted = data.map((row) => row.get(humidity)).sort();
   console.log(
     `Humidity: Min: ${humidityDataSorted[0]}, Max: ${humidityDataSorted.at(-1)}`
   );
-  // #4 --
+  // #4 ---
   const dataSortedHottest = data.sort(
     (row1, row2) => row2.get(maxT) - row1.get(maxT)
   );
@@ -52,7 +52,7 @@ export default function solution(content) {
     )}`
   );
 
-  // #5 --
+  // #5 ---
   const tempByCity = {};
   unicCities.forEach((element) => {
     tempByCity[element] = [];
@@ -60,15 +60,16 @@ export default function solution(content) {
   data.forEach((row) => {
     tempByCity[row.get(city)].push(row.get(maxT));
   });
+
   let hottestCity = "";
   let hottestMeanT = -Infinity;
-  for (const [cityName, Tarray] of Object.entries(tempByCity)) {
+  Object.entries(tempByCity).forEach(([cityName, Tarray]) => {
     const meanT = Tarray.reduce((sum, elem) => sum + elem) / Tarray.length;
     if (meanT > hottestMeanT) {
       hottestMeanT = meanT;
       hottestCity = cityName;
     }
-  }
+  });
 
   console.log(`HottestCity: ${hottestCity}`);
   // END
