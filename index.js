@@ -1,4 +1,5 @@
-import _ from "lodash";
+// import { array } from "fast-check";
+// import _, { values } from "lodash";
 
 export default function solution(content) {
   // BEGIN
@@ -50,5 +51,25 @@ export default function solution(content) {
       city
     )}`
   );
+
+  // #5 --
+  const tempByCity = {};
+  unicCities.forEach((element) => {
+    tempByCity[element] = [];
+  });
+  data.forEach((row) => {
+    tempByCity[row.get(city)].push(row.get(maxT));
+  });
+  let hottestCity = "";
+  let hottestMeanT = -Infinity;
+  for (const [cityName, Tarray] of Object.entries(tempByCity)) {
+    const meanT = Tarray.reduce((sum, elem) => sum + elem) / Tarray.length;
+    if (meanT > hottestMeanT) {
+      hottestMeanT = meanT;
+      hottestCity = cityName;
+    }
+  }
+
+  console.log(`HottestCity: ${hottestCity}`);
   // END
 }
