@@ -42,6 +42,13 @@ export default function solution(content) {
     `Humidity: Min: ${humidityDataSorted[0]}, Max: ${humidityDataSorted.at(-1)}`
   );
   // #4 --
-
+  const dataSortedHottest = data.sort(
+    (row1, row2) => row2.get(maxT) - row1.get(maxT)
+  );
+  console.log(
+    `HottestDay: ${dataSortedHottest[0].get(date)} ${dataSortedHottest[0].get(
+      city
+    )}`
+  );
   // END
 }
