@@ -37,5 +37,11 @@ export default function solution(content) {
   const unicCities = Array.from(new Set(cities)).sort();
   console.log(`Cities: ${unicCities.join(", ")}`);
   // #3 --
+  const humidityDataSorted = data.map((row) => row.get(humidity)).sort();
+  console.log(
+    `Humidity: Min: ${humidityDataSorted[0]}, Max: ${humidityDataSorted.at(-1)}`
+  );
+  // #4 --
+
   // END
 }
